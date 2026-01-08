@@ -14,8 +14,10 @@ jobs:
     if: github.event.label.name == 'command'
     runs-on: ubuntu-latest
     steps:
-      - name: Add eyes reaction
-        run: gh issue edit ${{ github.event.issue.number }} --add-label "processing"
+      - uses: actions/checkout@v4
+
+      - name: Add processing label
+        run: gh issue edit ${{ github.event.issue.number }} --add-label "processing" --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
@@ -31,8 +33,6 @@ jobs:
               content: 'eyes'
             });
 
-      - uses: actions/checkout@v4
-
       - name: Run Claude Code Action
         uses: anthropics/claude-code-action@beta
         with:
@@ -41,7 +41,7 @@ jobs:
             Issue #${{ github.event.issue.number }} のコマンドを処理してください。
 
             Issueのタイトルがコマンド名、本文がパラメータです。
-            CLAUDE.md の「タスク2: Issueコマンド処理」に従って処理してください。
+            CLAUDE.md の「タスク3: Issueコマンド処理」に従って処理してください。
 
             対応コマンド:
             - add source: ソース追加
@@ -70,12 +70,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --staged --quiet || git commit -m "Update config via Issue #${{ github.event.issue.number }}"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "Update config via Issue #${{ github.event.issue.number }}"
+            git push
+          fi
+        continue-on-error: true
 
       - name: Remove processing label
         if: always()
-        run: gh issue edit ${{ github.event.issue.number }} --remove-label "processing"
+        run: gh issue edit ${{ github.event.issue.number }} --remove-label "processing" --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
