@@ -1,0 +1,12 @@
+name: "ソース一覧"
+description: "登録済みソースの一覧を表示"
+title: "list sources"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ソース一覧
+        現在登録されているソースの一覧を表示します。
+
+        このIssueを作成すると、登録済みソースの一覧がコメントとして投稿されます。

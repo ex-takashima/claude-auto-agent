@@ -1,0 +1,19 @@
+name: "ソース有効化"
+description: "無効化されているソースを有効化"
+title: "enable source"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ソース有効化
+        無効化されているソースを有効化します。
+
+  - type: input
+    id: id
+    attributes:
+      label: ソースID
+      description: 有効化するソースのID
+      placeholder: "example-blog"
+    validations:
+      required: true

@@ -1,0 +1,21 @@
+name: "カテゴリ削除"
+description: "カテゴリを削除"
+title: "remove category"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## カテゴリ削除
+        カテゴリを削除します。
+
+        ⚠️ このカテゴリを使用しているソースがある場合は警告が表示されます。
+
+  - type: input
+    id: id
+    attributes:
+      label: カテゴリID
+      description: 削除するカテゴリのID
+      placeholder: "category-id"
+    validations:
+      required: true

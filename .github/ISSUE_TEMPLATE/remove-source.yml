@@ -1,0 +1,19 @@
+name: "ソース削除"
+description: "登録済みソースを削除"
+title: "remove source"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ソース削除
+        登録済みのソースを削除します。
+
+  - type: input
+    id: id
+    attributes:
+      label: ソースID
+      description: 削除するソースのID（list sourcesで確認可能）
+      placeholder: "example-blog"
+    validations:
+      required: true

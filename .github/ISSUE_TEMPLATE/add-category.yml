@@ -1,0 +1,37 @@
+name: "カテゴリ追加"
+description: "新しいカテゴリを追加"
+title: "add category"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## カテゴリ追加
+        新しいカテゴリを追加します。
+
+  - type: input
+    id: id
+    attributes:
+      label: カテゴリID
+      description: 英数字とハイフンのみ使用可能
+      placeholder: "new-category"
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: 表示名
+      description: レポートに表示される名前
+      placeholder: "新カテゴリ"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 説明（任意）
+      description: カテゴリの説明
+      placeholder: "このカテゴリの説明..."
+    validations:
+      required: false

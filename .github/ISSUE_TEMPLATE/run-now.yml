@@ -1,0 +1,23 @@
+name: "即時実行"
+description: "リサーチタスクを即時実行"
+title: "run now"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 即時実行
+        定時リサーチタスクを今すぐ実行します。
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: カテゴリ（任意）
+      description: 特定のカテゴリのみ実行する場合は選択
+      options:
+        - （全カテゴリ）
+        - ai-news
+        - llm
+        - tech-blog
+    validations:
+      required: false

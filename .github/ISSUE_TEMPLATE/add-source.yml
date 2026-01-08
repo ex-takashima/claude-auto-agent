@@ -1,0 +1,41 @@
+name: "ソース追加"
+description: "新しいクロール対象ソースを追加"
+title: "add source"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ソース追加
+        新しいクロール対象のWebサイトを追加します。
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: クロール対象のURL（記事一覧ページ）
+      placeholder: "https://example.com/blog/"
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: 表示名
+      description: レポートに表示される名前
+      placeholder: "Example Blog"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: categories
+    attributes:
+      label: カテゴリ
+      description: 該当するカテゴリを選択（複数可）
+      multiple: true
+      options:
+        - ai-news
+        - llm
+        - tech-blog
+    validations:
+      required: true

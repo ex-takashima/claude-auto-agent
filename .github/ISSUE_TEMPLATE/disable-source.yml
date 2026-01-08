@@ -1,0 +1,19 @@
+name: "ソース無効化"
+description: "ソースを一時的に無効化"
+title: "disable source"
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ソース無効化
+        ソースを一時的に無効化します（削除せずにクロール対象から外す）。
+
+  - type: input
+    id: id
+    attributes:
+      label: ソースID
+      description: 無効化するソースのID
+      placeholder: "example-blog"
+    validations:
+      required: true
