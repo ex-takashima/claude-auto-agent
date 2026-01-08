@@ -62,35 +62,46 @@ Actions → Scheduled Task → Run workflow
 
 ### Issue経由でソース管理
 
-#### ソース追加
+Issueテンプレートを使うと、フォーム形式で簡単に操作できます。
 
-1. 新しいIssueを作成
-2. タイトル: `add source`
-3. 本文:
-   ```
-   url: https://example.com/blog
-   name: Example Blog
-   categories: tech-blog
-   ```
-4. ラベル `command` を追加
+#### Issueテンプレート一覧
 
-#### ソース削除
+| テンプレート | 用途 |
+|-------------|------|
+| ソース追加 | 新しいクロール対象を追加 |
+| ソース削除 | ソースを削除 |
+| ソース一覧 | 登録済みソースを確認 |
+| ソース有効化 / 無効化 | ソースのON/OFF切り替え |
+| カテゴリ追加 / 削除 | カテゴリの管理 |
+| 即時実行 | 今すぐリサーチを実行 |
+| Claudeに相談 | 自由な相談・リサーチ依頼 |
 
+#### テンプレートを使わない場合
+
+以下の形式でIssueを作成し、ラベル `command` を追加:
+
+**ソース追加:**
+- タイトル: `add source`
+- 本文:
+  ```
+  url: https://example.com/blog
+  name: Example Blog
+  categories: tech-blog
+  ```
+
+**ソース削除:**
 - タイトル: `remove source`
 - 本文: `id: example-blog`
 
-#### ソース一覧表示
-
+**ソース一覧表示:**
 - タイトル: `list sources`
 - 本文: (空)
 
-#### 有効/無効切り替え
-
+**有効/無効切り替え:**
 - タイトル: `enable source` または `disable source`
 - 本文: `id: anthropic`
 
-#### カテゴリ追加
-
+**カテゴリ追加:**
 - タイトル: `add category`
 - 本文:
   ```
@@ -99,27 +110,48 @@ Actions → Scheduled Task → Run workflow
   description: カテゴリの説明
   ```
 
-#### 即時実行
-
+**即時実行:**
 - タイトル: `run now`
 - 本文: `category: ai-news` (任意、指定しなければ全カテゴリ)
+
+### Claudeに相談する
+
+「Claudeに相談」テンプレートを使うと、自由な依頼ができます。
+
+**依頼例:**
+- 「SUNO AI関連のニュースをキャッチできるソースを探して、見つかったら追加して」
+- 「OpenAIの公式ブログをソースに追加したい。URLを調べて設定して」
+- 「現在のソース設定を見直して、重複や問題がないか確認して」
+
+**実行権限オプション:**
+- **リサーチのみ**: 調査結果の報告のみ（設定変更なし）
+- **設定変更OK**: ソース/カテゴリの追加・変更を許可
 
 ## ファイル構成
 
 ```
 claude-auto-agent/
-├── .github/workflows/
-│   ├── scheduled-task.yml    # 定時実行
-│   └── issue-command.yml     # Issueコマンド処理
+├── .github/
+│   ├── workflows/
+│   │   ├── scheduled-task.yml    # 定時実行（2ジョブ構成）
+│   │   └── issue-command.yml     # Issueコマンド処理
+│   └── ISSUE_TEMPLATE/           # Issueテンプレート
+│       ├── add-source.yml
+│       ├── remove-source.yml
+│       ├── list-sources.yml
+│       ├── enable-source.yml
+│       ├── disable-source.yml
+│       ├── add-category.yml
+│       ├── remove-category.yml
+│       ├── run-now.yml
+│       ├── ask-claude.yml        # 自由な相談
+│       └── config.yml
 ├── config/
-│   └── sources.json          # ソース設定
+│   └── sources.json              # ソース設定
 ├── data/
-│   ├── reports/              # リサーチレポート
-│   └── latest.json           # 差分検出用
-├── scripts/
-│   ├── notify-discord.sh     # Discord通知
-│   └── notify-line.sh        # LINE通知
-├── CLAUDE.md                 # Claude Code Action指示書
+│   ├── reports/                  # リサーチレポート（日付別）
+│   └── latest.json               # 差分検出用（通知済みURL）
+├── CLAUDE.md                     # Claude Code Action指示書
 └── README.md
 ```
 

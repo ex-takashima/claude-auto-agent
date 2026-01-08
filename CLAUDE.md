@@ -9,10 +9,11 @@
 ## ファイル構成
 
 ```
-config/sources.json     # ソース設定（クロール対象URL、カテゴリ）
-data/latest.json        # 差分検出用（通知済みURL一覧）
-data/reports/           # リサーチ結果（Markdown形式）
-scripts/notify-*.sh     # 通知スクリプト
+config/sources.json          # ソース設定（クロール対象URL、カテゴリ）
+data/latest.json             # 差分検出用（通知済みURL一覧）
+data/reports/                # リサーチ結果（Markdown形式）
+.github/workflows/           # GitHub Actionsワークフロー
+.github/ISSUE_TEMPLATE/      # Issueテンプレート
 ```
 
 ---
@@ -21,8 +22,16 @@ scripts/notify-*.sh     # 通知スクリプト
 
 ### トリガー
 
-- scheduled-task.yml から呼び出し
+- scheduled-task.yml の `collect-and-commit` ジョブから呼び出し
 - `workflow_dispatch` での手動実行
+
+### ワークフローから渡される情報
+
+プロンプトに以下の情報が含まれます:
+- **現在時刻**: JST形式 (例: `2026-01-09 07:00 JST`)
+- **レポート日付**: JST日付 (例: `2026-01-09`)
+
+これらの値をレポート生成時に使用してください。
 
 ### 処理手順
 
@@ -53,17 +62,12 @@ scripts/notify-*.sh     # 通知スクリプト
      - long: 1段落
 
 6. **レポート保存**
-   - `data/reports/YYYY-MM-DD.md` に保存
+   - `data/reports/{レポート日付}.md` に保存（日付はプロンプトから取得）
    - 同日に複数回実行した場合は追記または上書き
    - フロントマター（YAML）に日付、カテゴリ、URL一覧を記録
+   - 生成時刻にはプロンプトで指定された時刻を使用
 
-7. **通知送信**
-   - Discord: curlコマンドで直接Webhook URLにPOSTする（環境変数`$DISCORD_WEBHOOK_URL`を使用）
-   - LINE: curlコマンドでLINE Messaging APIにPOSTする
-   - 通知メッセージにはレポートへのGitHub URLを含める
-   - 環境変数が設定されていない場合（空文字列の場合）はスキップ
-
-8. **差分データ更新**
+7. **差分データ更新**
    - `data/latest.json` の `notified_urls` に新着URLを追加
    - `last_updated` を現在時刻に更新
 
@@ -96,63 +100,19 @@ urls_found:
 ⏰ 生成時刻: HH:MM JST
 ```
 
-### Discord通知フォーマット
-
-```
-📰 カテゴリ名 (YYYY-MM-DD)
-━━━━━━━━━━━━━━━━━━━━
-
-🔹 ソース名
-• 記事タイトル1
-• 記事タイトル2
-
-🔹 別のソース名
-• 記事タイトル
-
-━━━━━━━━━━━━━━━━━━━━
-📄 レポート: [GitHubリンク]
-```
-
-**送信方法:**
-```bash
-curl -H "Content-Type: application/json" \
-  -d '{"content":"メッセージ内容"}' \
-  "$DISCORD_WEBHOOK_URL"
-```
-
-### LINE通知フォーマット
-
-```
-📰 カテゴリ名 (YYYY-MM-DD)
-
-🔹 ソース名
-• 記事タイトル1
-• 記事タイトル2
-
-📄 レポート: [GitHubリンク]
-```
-
-**送信方法:**
-```bash
-curl -X POST https://api.line.me/v2/bot/message/push \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
-  -d "{\"to\":\"$LINE_USER_ID\",\"messages\":[{\"type\":\"text\",\"text\":\"メッセージ内容\"}]}"
-```
-
 ---
 
-## タスク2: 通知メッセージ生成・送信
+## タスク2: 通知メッセージ生成
 
 ### トリガー
 
-- scheduled-task.yml の notify ジョブから呼び出し
+- scheduled-task.yml の `notify` ジョブから呼び出し
 - レポートファイルが存在する場合のみ実行
 
 ### 処理手順
 
 1. **レポート読み込み**
-   - `data/reports/YYYY-MM-DD.md` を読み込む
+   - プロンプトで指定されたレポートファイルを読み込む
    - 記事タイトルと要約を抽出
 
 2. **通知メッセージ生成**
@@ -160,15 +120,12 @@ curl -X POST https://api.line.me/v2/bot/message/push \
    - 各通知先に最適化したフォーマットで整形
    - 文字数制限を考慮（Discord: 2000文字、LINE: 5000文字）
 
-3. **Discord通知送信**
-   - 環境変数 `$DISCORD_WEBHOOK_URL` が設定されている場合のみ
-   - curlコマンドでWebhook URLにPOST
-   - JSONは適切にエスケープすること
+3. **ファイルに保存**
+   - Discord向け: `/tmp/discord_message.txt`
+   - LINE向け: `/tmp/line_message.txt`
+   - プレーンテキストで保存（JSONエスケープ不要）
 
-4. **LINE通知送信**
-   - 環境変数 `$LINE_CHANNEL_ACCESS_TOKEN` と `$LINE_USER_ID` が設定されている場合のみ
-   - curlコマンドでLINE Messaging APIにPOST
-   - JSONは適切にエスケープすること
+**注意:** 通知の送信はワークフローの別ステップで行われます。Claude Codeはメッセージ生成のみを担当します。
 
 ### Discord通知フォーマット
 
@@ -186,43 +143,22 @@ curl -X POST https://api.line.me/v2/bot/message/push \
 📄 詳細: [GitHubリンク]
 ```
 
-**送信コマンド:**
-```bash
-curl -X POST -H "Content-Type: application/json" \
-  -d '{"content":"メッセージ内容"}' \
-  "$DISCORD_WEBHOOK_URL"
-```
-
 ### LINE通知フォーマット
 
 LINEはシンプルで読みやすい形式にする。装飾は最小限に。
 
 ```
 📰 AI最新ニュース
-2026-01-08
+YYYY-MM-DD
 
-■ Anthropic
+■ ソース名
 ・記事タイトル（日本語）
 
-■ Google DeepMind
+■ 別のソース名
 ・記事タイトル（日本語）
 
-詳細: https://github.com/...
+詳細: [GitHubリンク]
 ```
-
-**送信コマンド:**
-```bash
-curl -X POST https://api.line.me/v2/bot/message/push \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
-  -d '{"to":"$LINE_USER_ID","messages":[{"type":"text","text":"メッセージ内容"}]}'
-```
-
-### 重要な注意事項
-
-- **改行**: シェルスクリプトではなくcurlで直接送信するため、JSONの改行は `\n` ではなく実際の改行文字を使用
-- **JSONエスケープ**: ダブルクォート、バックスラッシュ、改行などは適切にエスケープ
-- **文字化け防止**: UTF-8でエンコード
 
 ---
 
@@ -353,6 +289,27 @@ curl -X POST https://api.line.me/v2/bot/message/push \
 3. Issueにコメントで結果報告
 4. Issueをクローズ
 
+#### `ask: ...` - 自由な相談・リサーチ依頼
+
+**概要:**
+タイトルが「ask:」で始まるIssueは、自由形式の相談やリサーチ依頼として処理します。
+
+**本文の構成:**
+- `依頼内容`: 自由記述のリサーチ・作業依頼
+- `実行権限`: 「リサーチのみ」または「設定変更OK」
+
+**処理:**
+1. 「依頼内容」に従ってリサーチや作業を実行
+2. 「実行権限」が「リサーチのみ」の場合は設定変更せず報告のみ
+3. 「設定変更OK」の場合はソース/カテゴリの追加・変更を実行可能
+4. 結果は詳細にIssueコメントで報告
+5. Issueをクローズ
+
+**依頼例:**
+- 「SUNO AI関連のニュースをキャッチできるソースを探して、見つかったら追加して」
+- 「OpenAIの公式ブログをソースに追加したい。URLを調べて設定して」
+- 「現在のソース設定を見直して、重複や問題がないか確認して」
+
 ### エラー処理
 
 - パラメータ不足: 必要なパラメータを案内
@@ -389,11 +346,7 @@ curl -X POST https://api.line.me/v2/bot/message/push \
 ## 注意事項
 
 1. **JSONファイルの整形**: 保存時は2スペースインデントで整形する
-2. **日本時間**: 日付・時刻は JST (UTC+9) で表示。GitHub Actionsでは以下のコマンドで取得すること:
-   ```bash
-   TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M JST'
-   ```
-   または `date -u` でUTCを取得し、+9時間して計算する
+2. **日本時間**: 日付・時刻は JST (UTC+9) で表示。定時タスクではワークフローからJST時刻が渡されるので、その値を使用すること
 3. **コミット**: 変更があればコミットする（コミットメッセージは処理内容を簡潔に）
 4. **レート制限**: クロール時は各サイトに負荷をかけないよう適度な間隔を空ける
 5. **エラーハンドリング**: サイトにアクセスできない場合はスキップし、他のソースの処理を継続
