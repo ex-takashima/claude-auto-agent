@@ -14,6 +14,23 @@ jobs:
     if: github.event.label.name == 'command'
     runs-on: ubuntu-latest
     steps:
+      - name: Add eyes reaction
+        run: gh issue edit ${{ github.event.issue.number }} --add-label "processing"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: React with eyes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ github.event.issue.number }},
+              content: 'eyes'
+            });
+
       - uses: actions/checkout@v4
 
       - name: Run Claude Code Action
@@ -48,3 +65,10 @@ jobs:
           git add -A
           git diff --staged --quiet || git commit -m "Update config via Issue #${{ github.event.issue.number }}"
           git push
+
+      - name: Remove processing label
+        if: always()
+        run: gh issue edit ${{ github.event.issue.number }} --remove-label "processing"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
