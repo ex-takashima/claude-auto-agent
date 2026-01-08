@@ -41,6 +41,20 @@
       "url": "https://techcrunch.com/tag/ai-music/",
       "categories": ["ai-music"],
       "enabled": true
+    },
+    {
+      "id": "domoai-video",
+      "name": "DomoAI動画生成ツール",
+      "url": "https://domoai.app/blog",
+      "categories": ["ai-video", "ai-news"],
+      "enabled": true
+    },
+    {
+      "id": "domo-business-ai",
+      "name": "Domo ビジネスAI",
+      "url": "https://www.domo.com/blog",
+      "categories": ["ai-news"],
+      "enabled": true
     }
   ],
   "categories": {
@@ -62,6 +76,11 @@
     "ai-music": {
       "name": "AI音楽・音声生成",
       "description": "音楽生成AI、音声合成、オーディオAI関連の最新情報",
+      "enabled": true
+    },
+    "ai-video": {
+      "name": "AI動画・画像生成",
+      "description": "動画生成AI、画像生成AI、ビジュアルAIツールの最新情報",
       "enabled": true
     }
   },
