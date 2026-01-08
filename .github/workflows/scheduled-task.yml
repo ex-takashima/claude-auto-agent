@@ -48,7 +48,13 @@ jobs:
             REPO_URL="https://github.com/${{ github.repository }}"
             DATE=$(date +'%Y-%m-%d')
 
-            MESSAGE="📰 AI最新ニュース ($DATE)\\n\\n新着記事のレポートが生成されました。\\n\\n📄 レポート: $REPO_URL/blob/main/$REPORT_FILE"
+            # レポートから記事タイトルを抽出（最初の20件まで）
+            TITLES=$(grep -E "^- \*\*" "$REPORT_FILE" | head -20 | sed 's/- \*\*/• /' | sed 's/\*\*//')
+
+            # 記事数をカウント
+            ARTICLE_COUNT=$(grep -c "^- \*\*" "$REPORT_FILE" || echo "0")
+
+            MESSAGE="📰 AI最新ニュース ($DATE)\\n━━━━━━━━━━━━━━━━━━━━\\n\\n新着記事: ${ARTICLE_COUNT}件\\n\\n$TITLES\\n\\n━━━━━━━━━━━━━━━━━━━━\\n📄 詳細レポート: $REPO_URL/blob/main/$REPORT_FILE"
 
             curl -H "Content-Type: application/json" \
               -d "{\"content\":\"$MESSAGE\"}" \
@@ -60,3 +66,35 @@ jobs:
           fi
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Send LINE notification
+        if: env.LINE_CHANNEL_ACCESS_TOKEN != '' && env.LINE_USER_ID != ''
+        run: |
+          REPORT_FILE="data/reports/$(date +'%Y-%m-%d').md"
+          if [ -f "$REPORT_FILE" ]; then
+            REPO_URL="https://github.com/${{ github.repository }}"
+            DATE=$(date +'%Y-%m-%d')
+
+            # レポートから記事タイトルを抽出（最初の10件まで）
+            TITLES=$(grep -E "^- \*\*" "$REPORT_FILE" | head -10 | sed 's/- \*\*/• /' | sed 's/\*\*//')
+
+            # 記事数をカウント
+            ARTICLE_COUNT=$(grep -c "^- \*\*" "$REPORT_FILE" || echo "0")
+
+            MESSAGE="📰 AI最新ニュース ($DATE)\n\n新着記事: ${ARTICLE_COUNT}件\n\n$TITLES\n\n📄 詳細: $REPO_URL/blob/main/$REPORT_FILE"
+
+            # JSONエスケープ
+            MESSAGE_JSON=$(echo "$MESSAGE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+
+            curl -X POST https://api.line.me/v2/bot/message/push \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+              -d "{\"to\":\"$LINE_USER_ID\",\"messages\":[{\"type\":\"text\",\"text\":$MESSAGE_JSON}]}"
+
+            echo "LINE notification sent successfully"
+          else
+            echo "No report found for today"
+          fi
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
