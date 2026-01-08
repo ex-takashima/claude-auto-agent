@@ -34,10 +34,10 @@ jobs:
             });
 
       - name: Run Claude Code Action
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-base-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          direct_prompt: |
+          prompt: |
             Issue #${{ github.event.issue.number }} のコマンドを処理してください。
 
             Issueのタイトルがコマンド名、本文がパラメータです。
@@ -83,7 +83,8 @@ jobs:
             ローカル環境でリポジトリをcloneして実行してください：
             git clone https://github.com/${{ github.repository }}.git」
 
-            処理完了後、Issueにコメントで結果を報告し、Issueをクローズしてください。
+            処理完了後、Issueにコメントで結果を報告してください。
+          allowed_tools: "Bash(gh:*),Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
