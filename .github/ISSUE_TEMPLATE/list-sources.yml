@@ -10,3 +10,11 @@ body:
         現在登録されているソースの一覧を表示します。
 
         このIssueを作成すると、登録済みソースの一覧がコメントとして投稿されます。
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 確認
+      options:
+        - label: ソース一覧を表示する
+          required: true
