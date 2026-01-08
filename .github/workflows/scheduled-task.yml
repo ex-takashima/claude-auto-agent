@@ -26,15 +26,11 @@ jobs:
             2. data/latest.json で差分検出（新着記事のみ対象）
             3. 新着記事があれば要約を生成
             4. data/reports/YYYY-MM-DD.md にレポートを保存
-            5. Discord/LINE に通知（環境変数が設定されている場合）
-            6. data/latest.json を更新
+            5. data/latest.json を更新
 
             CLAUDE.md の指示に従って実行してください。
+            注意：Discord/LINE通知は別ステップで実行されるため、ここでは通知を送らないでください。
           allowed_tools: "Bash(*),Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
 
       - name: Commit changes
         run: |
@@ -43,3 +39,27 @@ jobs:
           git add -A
           git diff --staged --quiet || git commit -m "Update crawled data [$(date +'%Y-%m-%d')]"
           git push
+
+      - name: Send Discord notification
+        if: env.DISCORD_WEBHOOK_URL != ''
+        run: |
+          REPORT_FILE="data/reports/$(date +'%Y-%m-%d').md"
+          if [ -f "$REPORT_FILE" ]; then
+            # レポートから記事タイトルを抽出して通知メッセージを作成
+            REPO_URL="https://github.com/${{ github.repository }}"
+            MESSAGE="📰 AI最新ニュース ($(date +'%Y-%m-%d'))
+
+          新着記事のレポートが生成されました。
+
+          📄 レポート: $REPO_URL/blob/main/$REPORT_FILE"
+
+            curl -H "Content-Type: application/json" \
+              -d "{\"content\":\"$MESSAGE\"}" \
+              "$DISCORD_WEBHOOK_URL"
+
+            echo "Discord notification sent successfully"
+          else
+            echo "No report found for today"
+          fi
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
