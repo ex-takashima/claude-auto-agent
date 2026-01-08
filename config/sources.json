@@ -48,13 +48,6 @@
       "url": "https://domoai.app/blog",
       "categories": ["ai-video", "ai-news"],
       "enabled": true
-    },
-    {
-      "id": "domo-business-ai",
-      "name": "Domo ビジネスAI",
-      "url": "https://www.domo.com/blog",
-      "categories": ["ai-news"],
-      "enabled": true
     }
   ],
   "categories": {
