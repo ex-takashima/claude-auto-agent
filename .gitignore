@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Generated reports (keep .gitkeep)
+data/reports/*.md

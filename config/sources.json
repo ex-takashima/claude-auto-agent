@@ -1,0 +1,54 @@
+{
+  "sources": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic公式",
+      "url": "https://www.anthropic.com/news",
+      "categories": ["ai-news", "llm"],
+      "enabled": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI公式",
+      "url": "https://openai.com/news/",
+      "categories": ["ai-news", "llm"],
+      "enabled": true
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "url": "https://deepmind.google/blog/",
+      "categories": ["ai-news", "llm"],
+      "enabled": true
+    },
+    {
+      "id": "github-blog",
+      "name": "GitHub Blog",
+      "url": "https://github.blog/",
+      "categories": ["tech-blog"],
+      "enabled": true
+    }
+  ],
+  "categories": {
+    "ai-news": {
+      "name": "AI最新ニュース",
+      "description": "AI企業の公式発表・ニュース",
+      "enabled": true
+    },
+    "llm": {
+      "name": "LLM関連",
+      "description": "大規模言語モデル関連の情報",
+      "enabled": true
+    },
+    "tech-blog": {
+      "name": "技術ブログ",
+      "description": "技術系企業の公式ブログ",
+      "enabled": true
+    }
+  },
+  "settings": {
+    "language": "ja",
+    "max_items_per_source": 5,
+    "summary_length": "medium"
+  }
+}

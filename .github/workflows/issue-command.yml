@@ -1,0 +1,49 @@
+name: Issue Command
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-command:
+    if: github.event.label.name == 'command'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Claude Code Action
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Issue #${{ github.event.issue.number }} のコマンドを処理してください。
+
+            Issueのタイトルがコマンド名、本文がパラメータです。
+            CLAUDE.md の「タスク2: Issueコマンド処理」に従って処理してください。
+
+            対応コマンド:
+            - add source: ソース追加
+            - remove source: ソース削除
+            - list sources: ソース一覧
+            - enable source / disable source: 有効/無効切り替え
+            - add category / remove category: カテゴリ管理
+            - run now: 即時実行
+
+            処理完了後、Issueにコメントで結果を報告し、Issueをクローズしてください。
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Update config via Issue #${{ github.event.issue.number }}"
+          git push

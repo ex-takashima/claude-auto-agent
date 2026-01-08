@@ -1,0 +1,43 @@
+name: Scheduled Task
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # UTC 22:00 = JST 07:00
+  workflow_dispatch:       # 手動実行用
+
+permissions:
+  contents: write
+
+jobs:
+  collect-and-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Claude Code Action
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            定時リサーチタスクを実行してください。
+
+            1. config/sources.json を読み込み、有効なソース（enabled: true）をクロール
+            2. data/latest.json で差分検出（新着記事のみ対象）
+            3. 新着記事があれば要約を生成
+            4. data/reports/YYYY-MM-DD.md にレポートを保存
+            5. Discord/LINE に通知（環境変数が設定されている場合）
+            6. data/latest.json を更新
+
+            CLAUDE.md の指示に従って実行してください。
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Update crawled data [$(date +'%Y-%m-%d')]"
+          git push
