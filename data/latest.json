@@ -1,4 +1,17 @@
 {
-  "last_updated": null,
-  "notified_urls": []
+  "last_updated": "2026-01-08T07:10:00+09:00",
+  "notified_urls": [
+    "https://anthropic.com/news/compliance-framework-SB53",
+    "https://anthropic.com/news/genesis-mission-partnership",
+    "https://anthropic.com/news/protecting-well-being-of-users",
+    "https://anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
+    "https://anthropic.com/news/anthropic-accenture-partnership",
+    "https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/",
+    "https://deepmind.google/blog/google-deepmind-supports-us-department-of-energy-on-genesis/",
+    "https://github.blog/open-source/maintainers/5-podcast-episodes-to-help-you-build-with-confidence-in-2026/",
+    "https://github.blog/open-source/maintainers/this-years-most-influential-open-source-projects/",
+    "https://github.blog/news-insights/policy-news-and-insights/the-future-of-ai-powered-software-optimization-and-how-it-can-help-your-team/",
+    "https://github.blog/developer-skills/agentic-ai-mcp-and-spec-driven-development-top-blog-posts-of-2025/",
+    "https://github.blog/security/vulnerability-research/bugs-that-survive-the-heat-of-continuous-fuzzing/"
+  ]
 }
