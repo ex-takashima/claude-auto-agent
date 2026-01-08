@@ -32,7 +32,7 @@ GitHub Actions + Claude Code Action を使った自動リサーチ・通知エ�
 #### CLAUDE_CODE_OAUTH_TOKEN の取得方法
 
 1. [Claude Code CLI](https://github.com/anthropics/claude-code) をインストール
-2. `claude` コマンドでOAuth認証を実行
+2. `claude setup-token` コマンドでOAuth認証を実行
 3. 認証後に表示されるトークンをSecretに設定
 
 #### Discord Webhook URLの取得方法
