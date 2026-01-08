@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-08T13:00:00Z",
+  "last_updated": "2026-01-08T19:19:00Z",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -21,6 +21,11 @@
     "https://suno.com/blog/series-c-announcement",
     "https://suno.com/blog/suno-studio",
     "https://suno.com/blog/songs-of-love-suno",
-    "https://suno.com/blog/welcome-paul"
+    "https://suno.com/blog/welcome-paul",
+    "https://github.blog/open-source/maintainers/this-years-most-influential-open-source-projects/",
+    "https://github.blog/news-insights/policy-news-and-insights/the-future-of-ai-powered-software-optimization-and-how-it-can-help-your-team/",
+    "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/",
+    "https://techcrunch.com/2025/11/25/warner-music-signs-deal-with-ai-music-startup-suno-settles-lawsuit/",
+    "https://techcrunch.com/2025/11/19/legally-embattled-ai-music-startup-suno-raises-at-2-45b-valuation-on-200m-revenue/"
   ]
 }
