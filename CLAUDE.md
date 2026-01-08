@@ -58,9 +58,10 @@ scripts/notify-*.sh     # 通知スクリプト
    - フロントマター（YAML）に日付、カテゴリ、URL一覧を記録
 
 7. **通知送信**
-   - Discord: `DISCORD_WEBHOOK_URL` が設定されていれば送信
-   - LINE: `LINE_CHANNEL_ACCESS_TOKEN` と `LINE_USER_ID` が設定されていれば送信
-   - レポートへのGitHubリンクを含める
+   - Discord: curlコマンドで直接Webhook URLにPOSTする（環境変数`$DISCORD_WEBHOOK_URL`を使用）
+   - LINE: curlコマンドでLINE Messaging APIにPOSTする
+   - 通知メッセージにはレポートへのGitHub URLを含める
+   - 環境変数が設定されていない場合（空文字列の場合）はスキップ
 
 8. **差分データ更新**
    - `data/latest.json` の `notified_urls` に新着URLを追加
@@ -112,6 +113,13 @@ urls_found:
 📄 レポート: [GitHubリンク]
 ```
 
+**送信方法:**
+```bash
+curl -H "Content-Type: application/json" \
+  -d '{"content":"メッセージ内容"}' \
+  "$DISCORD_WEBHOOK_URL"
+```
+
 ### LINE通知フォーマット
 
 ```
@@ -122,6 +130,14 @@ urls_found:
 • 記事タイトル2
 
 📄 レポート: [GitHubリンク]
+```
+
+**送信方法:**
+```bash
+curl -X POST https://api.line.me/v2/bot/message/push \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+  -d "{\"to\":\"$LINE_USER_ID\",\"messages\":[{\"type\":\"text\",\"text\":\"メッセージ内容\"}]}"
 ```
 
 ---
