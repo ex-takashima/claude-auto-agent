@@ -45,16 +45,19 @@ jobs:
         run: |
           REPORT_FILE="data/reports/$(date +'%Y-%m-%d').md"
           if [ -f "$REPORT_FILE" ]; then
-            # レポートから記事タイトルを抽出して通知メッセージを作成
             REPO_URL="https://github.com/${{ github.repository }}"
-            MESSAGE="📰 AI最新ニュース ($(date +'%Y-%m-%d'))
+            DATE=$(date +'%Y-%m-%d')
 
-          新着記事のレポートが生成されました。
-
-          📄 レポート: $REPO_URL/blob/main/$REPORT_FILE"
+            # JSON payload with proper escaping
+            PAYLOAD=$(cat <<EOF
+{
+  "content": "📰 AI最新ニュース ($DATE)\n\n新着記事のレポートが生成されました。\n\n📄 レポート: $REPO_URL/blob/main/$REPORT_FILE"
+}
+EOF
+)
 
             curl -H "Content-Type: application/json" \
-              -d "{\"content\":\"$MESSAGE\"}" \
+              -d "$PAYLOAD" \
               "$DISCORD_WEBHOOK_URL"
 
             echo "Discord notification sent successfully"
