@@ -1,1 +1,20 @@
-{"last_updated":null,"notified_urls":[]}
+{
+  "last_updated": "2026-01-08T09:13:37Z",
+  "notified_urls": [
+    "https://www.anthropic.com/news/compliance-framework-SB53",
+    "https://www.anthropic.com/news/genesis-mission-partnership",
+    "https://www.anthropic.com/news/protecting-well-being-of-users",
+    "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
+    "https://www.anthropic.com/news/anthropic-accenture-partnership",
+    "https://blog.google/technology/google-deepmind/weathernext-2",
+    "https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-you-in-virtual-3d-worlds/",
+    "https://deepmind.google/blog/teaching-ai-to-see-the-world-more-like-we-do/",
+    "https://blog.google/technology/google-deepmind/ai-classroom-northern-ireland",
+    "https://deepmind.google/blog/mapping-modeling-and-understanding-nature-with-ai/",
+    "https://github.blog/open-source/maintainers/5-podcast-episodes-to-help-you-build-with-confidence-in-2026/",
+    "https://github.blog/open-source/maintainers/this-years-most-influential-open-source-projects/",
+    "https://github.blog/news-insights/policy-news-and-insights/the-future-of-ai-powered-software-optimization-and-how-it-can-help-your-team/",
+    "https://github.blog/developer-skills/agentic-ai-mcp-and-spec-driven-development-top-blog-posts-of-2025/",
+    "https://github.blog/security/vulnerability-research/bugs-that-survive-the-heat-of-continuous-fuzzing/"
+  ]
+}
