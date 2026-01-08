@@ -1,18 +1,4 @@
 {
-  "last_updated": "2026-01-08T06:55:57Z",
-  "notified_urls": [
-    "https://anthropic.com/news/compliance-framework-SB53",
-    "https://anthropic.com/news/genesis-mission-partnership",
-    "https://anthropic.com/news/protecting-well-being-of-users",
-    "https://anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
-    "https://anthropic.com/news/anthropic-accenture-partnership",
-    "https://deepmind.google/blog/deepening-our-partnership-with-the-uk-ai-security-institute/",
-    "https://deepmind.google/blog/strengthening-our-partnership-with-the-uk-government-to-support-prosperity-and-security-in-the-ai-era/",
-    "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/",
-    "https://github.blog/open-source/maintainers/5-podcast-episodes-to-help-you-build-with-confidence-in-2026/",
-    "https://github.blog/open-source/maintainers/this-years-most-influential-open-source-projects/",
-    "https://github.blog/news-insights/policy-news-and-insights/the-future-of-ai-powered-software-optimization-and-how-it-can-help-your-team/",
-    "https://github.blog/news-insights/product-news/lets-talk-about-github-actions/",
-    "https://github.blog/news-insights/company-news/github-availability-report-november-2025/"
-  ]
+  "last_updated": null,
+  "notified_urls": []
 }
