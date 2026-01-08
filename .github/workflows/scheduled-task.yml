@@ -18,6 +18,7 @@ jobs:
       - name: Run Claude Code Action
         uses: anthropics/claude-code-action@beta
         with:
+          mode: agent
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           direct_prompt: |
             定時リサーチタスクを実行してください。
