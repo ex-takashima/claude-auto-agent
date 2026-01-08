@@ -31,5 +31,5 @@ temp/
 .claude/settings.local.json
 
 # Generated reports (keep .gitkeep)
-data/reports/*.md
+# data/reports/*.md  # 一時的にコメントアウト（動作確認用）
 output.txt
