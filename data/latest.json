@@ -1,1 +1,20 @@
-{"last_updated":null,"notified_urls":[]}
+{
+  "last_updated": "2026-01-08T09:30:00Z",
+  "notified_urls": [
+    "https://www.anthropic.com/news/compliance-framework-SB53",
+    "https://www.anthropic.com/news/genesis-mission-partnership",
+    "https://www.anthropic.com/news/protecting-well-being-of-users",
+    "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
+    "https://www.anthropic.com/news/anthropic-accenture-partnership",
+    "https://blog.google/technology/ai/2025-research-breakthroughs/",
+    "https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/",
+    "https://deepmind.google/blog/google-deepmind-supports-us-department-of-energy-on-genesis/",
+    "https://blog.google/products/gemini/gemini-3-flash",
+    "https://blog.google/products/gemini/gemini-audio-model-updates/",
+    "https://github.blog/developer-skills/agentic-ai-mcp-and-spec-driven-development-top-blog-posts-of-2025/",
+    "https://github.blog/security/vulnerability-research/bugs-that-survive-the-heat-of-continuous-fuzzing/",
+    "https://github.blog/ai-and-ml/github-copilot/wrap-up-your-backlog-with-github-copilot-coding-agent/",
+    "https://github.blog/security/supply-chain-security/strengthening-supply-chain-security-preparing-for-the-next-malware-campaign/",
+    "https://github.blog/open-source/maintainers/5-podcast-episodes-to-help-you-build-with-confidence-in-2026/"
+  ]
+}
