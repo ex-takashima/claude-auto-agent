@@ -48,16 +48,10 @@ jobs:
             REPO_URL="https://github.com/${{ github.repository }}"
             DATE=$(date +'%Y-%m-%d')
 
-            # JSON payload with proper escaping
-            PAYLOAD=$(cat <<EOF
-{
-  "content": "📰 AI最新ニュース ($DATE)\n\n新着記事のレポートが生成されました。\n\n📄 レポート: $REPO_URL/blob/main/$REPORT_FILE"
-}
-EOF
-)
+            MESSAGE="📰 AI最新ニュース ($DATE)\\n\\n新着記事のレポートが生成されました。\\n\\n📄 レポート: $REPO_URL/blob/main/$REPORT_FILE"
 
             curl -H "Content-Type: application/json" \
-              -d "$PAYLOAD" \
+              -d "{\"content\":\"$MESSAGE\"}" \
               "$DISCORD_WEBHOOK_URL"
 
             echo "Discord notification sent successfully"
