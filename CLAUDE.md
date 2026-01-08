@@ -142,7 +142,91 @@ curl -X POST https://api.line.me/v2/bot/message/push \
 
 ---
 
-## タスク2: Issueコマンド処理
+## タスク2: 通知メッセージ生成・送信
+
+### トリガー
+
+- scheduled-task.yml の notify ジョブから呼び出し
+- レポートファイルが存在する場合のみ実行
+
+### 処理手順
+
+1. **レポート読み込み**
+   - `data/reports/YYYY-MM-DD.md` を読み込む
+   - 記事タイトルと要約を抽出
+
+2. **通知メッセージ生成**
+   - 記事タイトルを日本語に翻訳（英語の場合）
+   - 各通知先に最適化したフォーマットで整形
+   - 文字数制限を考慮（Discord: 2000文字、LINE: 5000文字）
+
+3. **Discord通知送信**
+   - 環境変数 `$DISCORD_WEBHOOK_URL` が設定されている場合のみ
+   - curlコマンドでWebhook URLにPOST
+   - JSONは適切にエスケープすること
+
+4. **LINE通知送信**
+   - 環境変数 `$LINE_CHANNEL_ACCESS_TOKEN` と `$LINE_USER_ID` が設定されている場合のみ
+   - curlコマンドでLINE Messaging APIにPOST
+   - JSONは適切にエスケープすること
+
+### Discord通知フォーマット
+
+```
+📰 AI最新ニュース (YYYY-MM-DD)
+━━━━━━━━━━━━━━━━━━━━
+
+🔹 ソース名
+• 記事タイトル（日本語）
+
+🔹 別のソース名
+• 記事タイトル（日本語）
+
+━━━━━━━━━━━━━━━━━━━━
+📄 詳細: [GitHubリンク]
+```
+
+**送信コマンド:**
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"content":"メッセージ内容"}' \
+  "$DISCORD_WEBHOOK_URL"
+```
+
+### LINE通知フォーマット
+
+LINEはシンプルで読みやすい形式にする。装飾は最小限に。
+
+```
+📰 AI最新ニュース
+2026-01-08
+
+■ Anthropic
+・記事タイトル（日本語）
+
+■ Google DeepMind
+・記事タイトル（日本語）
+
+詳細: https://github.com/...
+```
+
+**送信コマンド:**
+```bash
+curl -X POST https://api.line.me/v2/bot/message/push \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+  -d '{"to":"$LINE_USER_ID","messages":[{"type":"text","text":"メッセージ内容"}]}'
+```
+
+### 重要な注意事項
+
+- **改行**: シェルスクリプトではなくcurlで直接送信するため、JSONの改行は `\n` ではなく実際の改行文字を使用
+- **JSONエスケープ**: ダブルクォート、バックスラッシュ、改行などは適切にエスケープ
+- **文字化け防止**: UTF-8でエンコード
+
+---
+
+## タスク3: Issueコマンド処理
 
 ### トリガー
 

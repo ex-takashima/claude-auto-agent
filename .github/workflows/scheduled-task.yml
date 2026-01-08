@@ -10,8 +10,12 @@ permissions:
   id-token: write
 
 jobs:
-  collect-and-notify:
+  # ジョブ1: Claude Codeでクロール・レポート生成・コミット
+  collect-and-commit:
     runs-on: ubuntu-latest
+    outputs:
+      has_report: ${{ steps.check.outputs.has_report }}
+      report_date: ${{ steps.check.outputs.report_date }}
     steps:
       - uses: actions/checkout@v4
 
@@ -28,8 +32,8 @@ jobs:
             4. data/reports/YYYY-MM-DD.md にレポートを保存
             5. data/latest.json を更新
 
-            CLAUDE.md の指示に従って実行してください。
-            注意：Discord/LINE通知は別ステップで実行されるため、ここでは通知を送らないでください。
+            CLAUDE.md の「タスク1: 定時リサーチ実行」に従って実行してください。
+            注意：Discord/LINE通知は別ジョブで実行されるため、ここでは通知を送らないでください。
           allowed_tools: "Bash(*),Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       - name: Commit changes
@@ -40,61 +44,52 @@ jobs:
           git diff --staged --quiet || git commit -m "Update crawled data [$(date +'%Y-%m-%d')]"
           git push
 
-      - name: Send Discord notification
-        if: env.DISCORD_WEBHOOK_URL != ''
+      - name: Check for report
+        id: check
         run: |
-          REPORT_FILE="data/reports/$(date +'%Y-%m-%d').md"
+          REPORT_DATE=$(date +'%Y-%m-%d')
+          REPORT_FILE="data/reports/${REPORT_DATE}.md"
           if [ -f "$REPORT_FILE" ]; then
-            REPO_URL="https://github.com/${{ github.repository }}"
-            DATE=$(date +'%Y-%m-%d')
-
-            # レポートから記事タイトルを抽出（最初の20件まで）
-            TITLES=$(grep -E "^- \*\*" "$REPORT_FILE" | head -20 | sed 's/- \*\*/• /' | sed 's/\*\*//')
-
-            # 記事数をカウント
-            ARTICLE_COUNT=$(grep -c "^- \*\*" "$REPORT_FILE" || echo "0")
-
-            MESSAGE="📰 AI最新ニュース ($DATE)\\n━━━━━━━━━━━━━━━━━━━━\\n\\n新着記事: ${ARTICLE_COUNT}件\\n\\n$TITLES\\n\\n━━━━━━━━━━━━━━━━━━━━\\n📄 詳細レポート: $REPO_URL/blob/main/$REPORT_FILE"
-
-            curl -H "Content-Type: application/json" \
-              -d "{\"content\":\"$MESSAGE\"}" \
-              "$DISCORD_WEBHOOK_URL"
-
-            echo "Discord notification sent successfully"
+            echo "has_report=true" >> $GITHUB_OUTPUT
           else
-            echo "No report found for today"
+            echo "has_report=false" >> $GITHUB_OUTPUT
           fi
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          echo "report_date=${REPORT_DATE}" >> $GITHUB_OUTPUT
 
-      - name: Send LINE notification
-        if: env.LINE_CHANNEL_ACCESS_TOKEN != '' && env.LINE_USER_ID != ''
-        run: |
-          REPORT_FILE="data/reports/$(date +'%Y-%m-%d').md"
-          if [ -f "$REPORT_FILE" ]; then
-            REPO_URL="https://github.com/${{ github.repository }}"
-            DATE=$(date +'%Y-%m-%d')
+  # ジョブ2: Claude Codeで通知メッセージ生成・送信
+  notify:
+    needs: collect-and-commit
+    if: needs.collect-and-commit.outputs.has_report == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main  # 最新のコミットを取得
 
-            # レポートから記事タイトルを抽出（最初の10件まで）
-            TITLES=$(grep -E "^- \*\*" "$REPORT_FILE" | head -10 | sed 's/- \*\*/• /' | sed 's/\*\*//')
+      - name: Generate and send notifications
+        uses: anthropics/claude-code-base-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            通知メッセージ生成・送信タスクを実行してください。
 
-            # 記事数をカウント
-            ARTICLE_COUNT=$(grep -c "^- \*\*" "$REPORT_FILE" || echo "0")
+            レポートファイル: data/reports/${{ needs.collect-and-commit.outputs.report_date }}.md
+            リポジトリURL: https://github.com/${{ github.repository }}
 
-            MESSAGE="📰 AI最新ニュース ($DATE)\n\n新着記事: ${ARTICLE_COUNT}件\n\n$TITLES\n\n📄 詳細: $REPO_URL/blob/main/$REPORT_FILE"
+            CLAUDE.md の「タスク2: 通知メッセージ生成・送信」に従って実行してください。
 
-            # JSONエスケープ
-            MESSAGE_JSON=$(echo "$MESSAGE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+            処理手順：
+            1. レポートファイルを読み込む
+            2. 記事タイトルを日本語に翻訳（英語の場合）
+            3. Discord向けメッセージを生成して送信（$DISCORD_WEBHOOK_URL が設定されている場合）
+            4. LINE向けメッセージを生成して送信（$LINE_CHANNEL_ACCESS_TOKEN と $LINE_USER_ID が設定されている場合）
 
-            curl -X POST https://api.line.me/v2/bot/message/push \
-              -H "Content-Type: application/json" \
-              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
-              -d "{\"to\":\"$LINE_USER_ID\",\"messages\":[{\"type\":\"text\",\"text\":$MESSAGE_JSON}]}"
-
-            echo "LINE notification sent successfully"
-          else
-            echo "No report found for today"
-          fi
-        env:
-          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+            重要：
+            - 記事タイトルは必ず日本語で表示
+            - 改行は正しく処理されるようにJSONエスケープを行う
+            - LINEメッセージはシンプルで読みやすい形式に
+          allowed_tools: "Bash(*),Read,Glob,Grep"
+          claude_env: |
+            DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}
+            LINE_CHANNEL_ACCESS_TOKEN=${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+            LINE_USER_ID=${{ secrets.LINE_USER_ID }}
