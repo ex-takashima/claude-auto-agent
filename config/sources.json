@@ -27,6 +27,20 @@
       "url": "https://github.blog/",
       "categories": ["tech-blog"],
       "enabled": true
+    },
+    {
+      "id": "suno-ai-official",
+      "name": "SUNO AI 公式",
+      "url": "https://suno.ai/blog",
+      "categories": ["ai-music", "ai-news"],
+      "enabled": true
+    },
+    {
+      "id": "techcrunch-ai-music",
+      "name": "TechCrunch AI音楽",
+      "url": "https://techcrunch.com/tag/ai-music/",
+      "categories": ["ai-music"],
+      "enabled": true
     }
   ],
   "categories": {
@@ -43,6 +57,11 @@
     "tech-blog": {
       "name": "技術ブログ",
       "description": "技術系企業の公式ブログ",
+      "enabled": true
+    },
+    "ai-music": {
+      "name": "AI音楽・音声生成",
+      "description": "音楽生成AI、音声合成、オーディオAI関連の最新情報",
       "enabled": true
     }
   },
