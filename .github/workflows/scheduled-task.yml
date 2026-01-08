@@ -56,7 +56,7 @@ jobs:
           fi
           echo "report_date=${REPORT_DATE}" >> $GITHUB_OUTPUT
 
-  # ジョブ2: Claude Codeで通知メッセージ生成・送信
+  # ジョブ2: 通知メッセージ生成・送信
   notify:
     needs: collect-and-commit
     if: needs.collect-and-commit.outputs.has_report == 'true'
@@ -64,32 +64,90 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main  # 最新のコミットを取得
+          ref: main
 
-      - name: Generate and send notifications
+      - name: Generate notification messages with Claude Code
         uses: anthropics/claude-code-base-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            通知メッセージ生成・送信タスクを実行してください。
+            通知メッセージを生成してファイルに保存してください。
 
             レポートファイル: data/reports/${{ needs.collect-and-commit.outputs.report_date }}.md
             リポジトリURL: https://github.com/${{ github.repository }}
 
-            CLAUDE.md の「タスク2: 通知メッセージ生成・送信」に従って実行してください。
-
             処理手順：
             1. レポートファイルを読み込む
             2. 記事タイトルを日本語に翻訳（英語の場合）
-            3. Discord向けメッセージを生成して送信（$DISCORD_WEBHOOK_URL が設定されている場合）
-            4. LINE向けメッセージを生成して送信（$LINE_CHANNEL_ACCESS_TOKEN と $LINE_USER_ID が設定されている場合）
+            3. Discord向けメッセージを生成して /tmp/discord_message.txt に保存
+            4. LINE向けメッセージを生成して /tmp/line_message.txt に保存
+
+            Discord向けメッセージフォーマット:
+            ```
+            📰 AI最新ニュース (YYYY-MM-DD)
+            ━━━━━━━━━━━━━━━━━━━━
+
+            🔹 ソース名
+            • 記事タイトル（日本語訳）
+
+            ━━━━━━━━━━━━━━━━━━━━
+            📄 詳細: [リポジトリURL]/blob/main/data/reports/[日付].md
+            ```
+
+            LINE向けメッセージフォーマット（シンプルに）:
+            ```
+            📰 AI最新ニュース
+            YYYY-MM-DD
+
+            ■ ソース名
+            ・記事タイトル（日本語訳）
+
+            詳細: [リポジトリURL]/blob/main/data/reports/[日付].md
+            ```
 
             重要：
-            - 記事タイトルは必ず日本語で表示
-            - 改行は正しく処理されるようにJSONエスケープを行う
-            - LINEメッセージはシンプルで読みやすい形式に
-          allowed_tools: "Bash(*),Read,Glob,Grep"
-          claude_env: |
-            DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}
-            LINE_CHANNEL_ACCESS_TOKEN=${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-            LINE_USER_ID=${{ secrets.LINE_USER_ID }}
+            - 記事タイトルは必ず日本語で表示すること
+            - ファイルはプレーンテキストで保存（JSONエスケープ不要）
+            - 環境変数は参照しないこと
+          allowed_tools: "Bash(mkdir:*,touch:*,cat:*),Read,Write,Glob,Grep"
+
+      - name: Send Discord notification
+        if: env.DISCORD_WEBHOOK_URL != ''
+        run: |
+          if [ -f /tmp/discord_message.txt ]; then
+            MESSAGE=$(cat /tmp/discord_message.txt)
+            # JSONエスケープ
+            MESSAGE_JSON=$(echo "$MESSAGE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+
+            curl -X POST \
+              -H "Content-Type: application/json" \
+              -d "{\"content\":${MESSAGE_JSON}}" \
+              "$DISCORD_WEBHOOK_URL"
+
+            echo "Discord notification sent"
+          else
+            echo "Discord message file not found"
+          fi
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Send LINE notification
+        if: env.LINE_CHANNEL_ACCESS_TOKEN != '' && env.LINE_USER_ID != ''
+        run: |
+          if [ -f /tmp/line_message.txt ]; then
+            MESSAGE=$(cat /tmp/line_message.txt)
+            # JSONエスケープ
+            MESSAGE_JSON=$(echo "$MESSAGE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+
+            curl -X POST https://api.line.me/v2/bot/message/push \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+              -d "{\"to\":\"$LINE_USER_ID\",\"messages\":[{\"type\":\"text\",\"text\":$MESSAGE_JSON}]}"
+
+            echo "LINE notification sent"
+          else
+            echo "LINE message file not found"
+          fi
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
