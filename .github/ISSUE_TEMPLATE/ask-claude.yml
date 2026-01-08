@@ -1,0 +1,50 @@
+name: "Claudeに相談"
+description: "リサーチや設定の相談をClaude Codeに依頼"
+title: "ask: "
+labels: ["command"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Claudeに相談
+        Claude Codeにリサーチや設定の相談ができます。
+
+        ### 依頼例
+        - 「SUNO AI関連のニュースをキャッチできるソースを探して、見つかったら追加して」
+        - 「今週のレポートをまとめて」
+        - 「OpenAIの公式ブログをソースに追加したい。URLを調べて設定して」
+        - 「現在のソース設定を見直して、重複や問題がないか確認して」
+
+  - type: textarea
+    id: request
+    attributes:
+      label: 依頼内容
+      description: Claudeに依頼したいことを自由に記述してください
+      placeholder: |
+        例: SUNO AI（音楽生成AI）の最新ニュースや新機能、規約変更などをキャッチできるソースを探してください。
+
+        見つかったら：
+        1. 適切なカテゴリがなければ作成
+        2. ソースを追加
+        3. 設定内容を報告
+    validations:
+      required: true
+
+  - type: dropdown
+    id: action
+    attributes:
+      label: 実行権限
+      description: 設定変更を許可するかどうか
+      options:
+        - リサーチのみ（設定変更しない）
+        - 設定変更OK（ソース/カテゴリの追加・変更を許可）
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: options
+    attributes:
+      label: オプション
+      options:
+        - label: 詳細なリサーチレポートが欲しい
+        - label: 複数の候補を比較検討してほしい
