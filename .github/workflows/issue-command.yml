@@ -76,6 +76,12 @@ jobs:
           fi
         continue-on-error: true
 
+      - name: Close issue
+        run: gh issue close ${{ github.event.issue.number }} --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
       - name: Remove processing label
         if: always()
         run: gh issue edit ${{ github.event.issue.number }} --remove-label "processing" --repo ${{ github.repository }}
