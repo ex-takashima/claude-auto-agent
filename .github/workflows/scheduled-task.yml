@@ -16,11 +16,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run Claude Code Action
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-base-action@beta
         with:
-          mode: agent
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          direct_prompt: |
+          prompt: |
             定時リサーチタスクを実行してください。
 
             1. config/sources.json を読み込み、有効なソース（enabled: true）をクロール
@@ -31,6 +30,7 @@ jobs:
             6. data/latest.json を更新
 
             CLAUDE.md の指示に従って実行してください。
+          allowed_tools: "Bash(*),Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
