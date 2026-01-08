@@ -19,6 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Get JST time
+        id: jst
+        run: |
+          echo "date=$(TZ=Asia/Tokyo date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "time=$(TZ=Asia/Tokyo date +'%H:%M')" >> $GITHUB_OUTPUT
+          echo "datetime=$(TZ=Asia/Tokyo date +'%Y-%m-%d %H:%M JST')" >> $GITHUB_OUTPUT
+
       - name: Run Claude Code Action
         uses: anthropics/claude-code-base-action@beta
         with:
@@ -26,11 +33,15 @@ jobs:
           prompt: |
             定時リサーチタスクを実行してください。
 
+            現在時刻: ${{ steps.jst.outputs.datetime }}
+            レポート日付: ${{ steps.jst.outputs.date }}
+
             1. config/sources.json を読み込み、有効なソース（enabled: true）をクロール
             2. data/latest.json で差分検出（新着記事のみ対象）
             3. 新着記事があれば要約を生成
-            4. data/reports/YYYY-MM-DD.md にレポートを保存
+            4. data/reports/${{ steps.jst.outputs.date }}.md にレポートを保存
             5. data/latest.json を更新
+            6. レポートの生成時刻には「${{ steps.jst.outputs.time }} JST」を使用
 
             CLAUDE.md の「タスク1: 定時リサーチ実行」に従って実行してください。
             注意：Discord/LINE通知は別ジョブで実行されるため、ここでは通知を送らないでください。
@@ -41,13 +52,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --staged --quiet || git commit -m "Update crawled data [$(date +'%Y-%m-%d')]"
+          git diff --staged --quiet || git commit -m "Update crawled data [${{ steps.jst.outputs.date }}]"
           git push
 
       - name: Check for report
         id: check
         run: |
-          REPORT_DATE=$(date +'%Y-%m-%d')
+          REPORT_DATE="${{ steps.jst.outputs.date }}"
           REPORT_FILE="data/reports/${REPORT_DATE}.md"
           if [ -f "$REPORT_FILE" ]; then
             echo "has_report=true" >> $GITHUB_OUTPUT
