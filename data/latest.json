@@ -1,4 +1,12 @@
 {
-  "last_updated": null,
-  "notified_urls": []
+  "last_updated": "2026-01-08T14:25:19Z",
+  "notified_urls": [
+    "https://anthropic.com/news/compliance-framework-SB53",
+    "https://anthropic.com/news/genesis-mission-partnership",
+    "https://anthropic.com/news/protecting-well-being-of-users",
+    "https://anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
+    "https://blog.google/products/gemini/gemini-3/",
+    "https://github.blog/developer-skills/agentic-ai-mcp-and-spec-driven-development-top-blog-posts-of-2025/",
+    "https://github.blog/security/vulnerability-research/bugs-that-survive-the-heat-of-continuous-fuzzing/"
+  ]
 }
