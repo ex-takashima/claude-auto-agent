@@ -6,7 +6,7 @@ GitHub Actions + Claude Code Action を使った自動リサーチ・通知エ�
 
 ## 特徴
 
-- **無料運用**: GitHub Actions無料枠 + Claude API従量課金のみ
+- **追加費用なし**: Claude Max Planのサブスク範囲内 + GitHub Actions無料枠で運用可能
 - **自動実行**: 毎日定時に自動でリサーチ
 - **差分検出**: 新着記事のみを通知（重複なし）
 - **Issue経由操作**: GitHubのIssueからソース追加・削除が可能
@@ -161,11 +161,11 @@ claude-auto-agent/
 | `max_items_per_source` | 各ソースから取得する最大件数 |
 | `summary_length` | 要約の長さ (short/medium/long) |
 
-## コスト目安
+## 利用要件
 
-- **GitHub Actions**: 無料枠内（月2,000分）
-- **Claude API**: 使用量に応じた従量課金
-  - 1日1回実行、5ソースで約 $0.01〜0.05/日
+- **Claude Max Plan**: サブスクリプション契約が必要（OAuth認証で利用）
+- **GitHub Actions**: 無料枠内で運用可能（月2,000分）
+- **追加のAPI費用**: なし（Max Planの範囲内）
 
 ## セキュリティ注意事項
 
