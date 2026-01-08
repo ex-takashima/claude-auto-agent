@@ -32,3 +32,4 @@ temp/
 
 # Generated reports (keep .gitkeep)
 data/reports/*.md
+output.txt
