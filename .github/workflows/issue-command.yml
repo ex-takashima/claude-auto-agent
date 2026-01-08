@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   issues: write
+  id-token: write
 
 jobs:
   process-command:
@@ -19,7 +20,7 @@ jobs:
         uses: anthropics/claude-code-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          prompt: |
+          direct_prompt: |
             Issue #${{ github.event.issue.number }} のコマンドを処理してください。
 
             Issueのタイトルがコマンド名、本文がパラメータです。

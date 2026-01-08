@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   collect-and-notify:
@@ -18,7 +19,7 @@ jobs:
         uses: anthropics/claude-code-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          prompt: |
+          direct_prompt: |
             定時リサーチタスクを実行してください。
 
             1. config/sources.json を読み込み、有効なソース（enabled: true）をクロール
