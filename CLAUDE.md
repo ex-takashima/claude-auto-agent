@@ -49,11 +49,17 @@ data/reports/                # リサーチ結果（Markdown形式）
    - 記事一覧ページから最新記事のURLとタイトルを取得
    - `settings.max_items_per_source` 件まで取得
 
-4. **新着判定**
+4. **記事の鮮度フィルタリング**
+   - `settings.max_article_age_days` が設定されている場合、古い記事を除外
+   - 現在日付から `max_article_age_days` 日以内に公開された記事のみ対象
+   - 記事の公開日は、記事ページまたは一覧ページから判別する
+   - 公開日が判別できない場合は対象に含める（安全側に倒す）
+
+5. **新着判定**
    - `data/latest.json` の `notified_urls` にないURLが新着
    - 新着がなければ通知せず終了
 
-5. **要約生成**
+6. **要約生成**
    - 新着記事の内容を取得
    - `settings.language` の言語で要約
    - `settings.summary_length` に応じた長さで要約
@@ -61,13 +67,13 @@ data/reports/                # リサーチ結果（Markdown形式）
      - medium: 3-5文
      - long: 1段落
 
-6. **レポート保存**
+7. **レポート保存**
    - `data/reports/{レポート日付}.md` に保存（日付はプロンプトから取得）
    - 同日に複数回実行した場合は追記または上書き
    - フロントマター（YAML）に日付、カテゴリ、URL一覧を記録
    - 生成時刻にはプロンプトで指定された時刻を使用
 
-7. **差分データ更新**
+8. **差分データ更新**
    - `data/latest.json` の `notified_urls` に新着URLを追加
    - `last_updated` を現在時刻に更新
 
