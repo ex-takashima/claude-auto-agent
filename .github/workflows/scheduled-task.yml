@@ -30,6 +30,7 @@ jobs:
         uses: anthropics/claude-code-action/base-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: "--allowedTools Read Write Edit Glob Grep WebFetch WebSearch"
           prompt: |
             定時リサーチタスクを実行してください。
 
@@ -80,6 +81,7 @@ jobs:
         uses: anthropics/claude-code-action/base-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: "--allowedTools Read Write Glob Grep"
           prompt: |
             通知メッセージを生成してファイルに保存してください。
 
