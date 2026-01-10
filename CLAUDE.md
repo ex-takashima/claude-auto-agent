@@ -127,9 +127,10 @@ urls_found:
    - 文字数制限を考慮（Discord: 2000文字、LINE: 5000文字）
 
 3. **ファイルに保存**
-   - Discord向け: `/tmp/discord_message.txt`
-   - LINE向け: `/tmp/line_message.txt`
+   - Discord向け: `./discord_message.txt`（カレントディレクトリ直下）
+   - LINE向け: `./line_message.txt`（カレントディレクトリ直下）
    - プレーンテキストで保存（JSONエスケープ不要）
+   - **重要:** `/tmp/` は使用禁止（権限エラーになるため）
 
 **注意:** 通知の送信はワークフローの別ステップで行われます。Claude Codeはメッセージ生成のみを担当します。
 
