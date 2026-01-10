@@ -1,3 +1,20 @@
+## 🚀 Quick Start（5分で動かす）
+
+このリポジトリは **サーバー不要**・**追加費用なし**で  
+GitHub上だけで動く AIリサーチエージェントです。
+
+### 最小構成（まずはDiscord通知だけ）
+
+1. **Use this template**（または Fork）
+2. GitHub Secrets に以下を追加  
+   - `CLAUDE_CODE_OAUTH_TOKEN`
+   - `DISCORD_WEBHOOK_URL`
+3. Actions → **Scheduled Task** → Run workflow
+
+👉 数分後、Discordに要約が届きます。
+
+---
+
 # Claude Auto Agent
 
 GitHub Actions + Claude Code Action を使った自動リサーチ・通知エージェント
