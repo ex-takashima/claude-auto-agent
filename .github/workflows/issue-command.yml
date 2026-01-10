@@ -84,7 +84,6 @@ jobs:
             git clone https://github.com/${{ github.repository }}.git」
 
             処理完了後、Issueにコメントで結果を報告してください。
-          allowed_tools: "Bash(gh:*),Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}

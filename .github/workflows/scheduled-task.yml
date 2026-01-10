@@ -45,7 +45,6 @@ jobs:
 
             CLAUDE.md の「タスク1: 定時リサーチ実行」に従って実行してください。
             注意：Discord/LINE通知は別ジョブで実行されるため、ここでは通知を送らないでください。
-          allowed_tools: "Bash(*),Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       - name: Commit changes
         run: |
@@ -120,7 +119,6 @@ jobs:
             - 記事タイトルは必ず日本語で表示すること
             - ファイルはプレーンテキストで保存（JSONエスケープ不要）
             - 環境変数は参照しないこと
-          allowed_tools: "Bash(mkdir:*,touch:*,cat:*),Read,Write,Glob,Grep"
 
       - name: Send Discord notification
         if: env.DISCORD_WEBHOOK_URL != ''
