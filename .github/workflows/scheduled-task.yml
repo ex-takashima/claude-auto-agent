@@ -82,7 +82,6 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: "--allowedTools Read Write Edit Glob Grep WebFetch WebSearch"
-          show_full_output: true
           prompt: |
             通知メッセージを生成してファイルに保存してください。
 
@@ -122,15 +121,6 @@ jobs:
             - 記事タイトルは必ず日本語で表示すること
             - ファイルはプレーンテキストで保存（JSONエスケープ不要）
             - 環境変数は参照しないこと
-
-      - name: Debug - List files
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in current directory:"
-          ls -la
-          echo "---"
-          echo "Looking for message files:"
-          find . -name "*message*.txt" 2>/dev/null || echo "No message files found"
 
       - name: Send Discord notification
         if: env.DISCORD_WEBHOOK_URL != ''
