@@ -1,3 +1,8 @@
+# Claude Auto Agent
+
+[![Scheduled Task](https://github.com/ex-takashima/claude-auto-agent/actions/workflows/scheduled-task.yml/badge.svg)](https://github.com/ex-takashima/claude-auto-agent/actions/workflows/scheduled-task.yml)
+
+
 ## 🚀 Quick Start（5分で動かす）
 
 このリポジトリは **サーバー不要**・**追加費用なし**で  
@@ -14,8 +19,6 @@ GitHub上だけで動く AIリサーチエージェントです。
 👉 数分後、Discordに要約が届きます。
 
 ---
-
-# Claude Auto Agent
 
 GitHub Actions + Claude Code Action を使った自動リサーチ・通知エージェント
 
