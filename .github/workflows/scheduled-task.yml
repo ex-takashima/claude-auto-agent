@@ -27,7 +27,7 @@ jobs:
           echo "datetime=$(TZ=Asia/Tokyo date +'%Y-%m-%d %H:%M JST')" >> $GITHUB_OUTPUT
 
       - name: Run Claude Code Action
-        uses: anthropics/claude-code-base-action@beta
+        uses: anthropics/claude-code-action/base-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
@@ -78,7 +78,7 @@ jobs:
           ref: main
 
       - name: Generate notification messages with Claude Code
-        uses: anthropics/claude-code-base-action@beta
+        uses: anthropics/claude-code-action/base-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
