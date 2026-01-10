@@ -48,6 +48,13 @@
       "url": "https://domoai.app/blog",
       "categories": ["ai-video", "ai-news"],
       "enabled": true
+    },
+    {
+      "id": "google-cloud-ai",
+      "name": "Google Cloud AI & ML Blog",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/",
+      "categories": ["ai-video", "ai-news"],
+      "enabled": true
     }
   ],
   "categories": {
