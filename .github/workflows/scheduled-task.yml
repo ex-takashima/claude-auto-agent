@@ -89,8 +89,8 @@ jobs:
             処理手順：
             1. レポートファイルを読み込む
             2. 記事タイトルを日本語に翻訳（英語の場合）
-            3. Discord向けメッセージを生成して /tmp/discord_message.txt に保存
-            4. LINE向けメッセージを生成して /tmp/line_message.txt に保存
+            3. Discord向けメッセージを生成して discord_message.txt に保存
+            4. LINE向けメッセージを生成して line_message.txt に保存
 
             Discord向けメッセージフォーマット:
             ```
@@ -123,8 +123,8 @@ jobs:
       - name: Send Discord notification
         if: env.DISCORD_WEBHOOK_URL != ''
         run: |
-          if [ -f /tmp/discord_message.txt ]; then
-            MESSAGE=$(cat /tmp/discord_message.txt)
+          if [ -f discord_message.txt ]; then
+            MESSAGE=$(cat discord_message.txt)
             # JSONエスケープ
             MESSAGE_JSON=$(echo "$MESSAGE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
 
@@ -143,8 +143,8 @@ jobs:
       - name: Send LINE notification
         if: env.LINE_CHANNEL_ACCESS_TOKEN != '' && env.LINE_USER_ID != ''
         run: |
-          if [ -f /tmp/line_message.txt ]; then
-            MESSAGE=$(cat /tmp/line_message.txt)
+          if [ -f line_message.txt ]; then
+            MESSAGE=$(cat line_message.txt)
             # JSONエスケープ
             MESSAGE_JSON=$(echo "$MESSAGE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
 

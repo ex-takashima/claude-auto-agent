@@ -33,3 +33,7 @@ temp/
 # Generated reports (keep .gitkeep)
 # data/reports/*.md  # 一時的にコメントアウト（動作確認用）
 output.txt
+
+# Notification messages (temporary)
+discord_message.txt
+line_message.txt
