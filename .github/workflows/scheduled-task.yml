@@ -92,8 +92,8 @@ jobs:
             処理手順：
             1. レポートファイルを読み込む
             2. 記事タイトルを日本語に翻訳（英語の場合）
-            3. Discord向けメッセージを生成して discord_message.txt に保存
-            4. LINE向けメッセージを生成して line_message.txt に保存
+            3. Discord向けメッセージを生成して ./discord_message.txt に保存（カレントディレクトリ直下、/tmp/は使用禁止）
+            4. LINE向けメッセージを生成して ./line_message.txt に保存（カレントディレクトリ直下、/tmp/は使用禁止）
 
             Discord向けメッセージフォーマット:
             ```
