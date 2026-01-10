@@ -1,7 +1,7 @@
 # Claude Auto Agent
 
 [![Scheduled Task](https://github.com/ex-takashima/claude-auto-agent/actions/workflows/scheduled-task.yml/badge.svg)](https://github.com/ex-takashima/claude-auto-agent/actions/workflows/scheduled-task.yml)
-
+[![Issue Command](https://github.com/ex-takashima/claude-auto-agent/actions/workflows/issue-command.yml/badge.svg)](https://github.com/ex-takashima/claude-auto-agent/actions/workflows/issue-command.yml)
 
 ## 🚀 Quick Start（5分で動かす）
 
