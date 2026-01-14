@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-14T07:04:00+09:00",
+  "last_updated": "2026-01-15T07:05:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -31,6 +31,19 @@
     "https://cloud.google.com/blog/products/ai-machine-learning/nano-banana-pro-available-for-enterprise",
     "https://cloud.google.com/blog/products/ai-machine-learning/what-google-cloud-announced-in-ai-this-month",
     "https://cloud.google.com/blog/products/ai-machine-learning/gemini-3-flash-for-enterprises",
-    "https://cloud.google.com/blog/products/ai-machine-learning/new-enhanced-tool-governance-in-vertex-ai-agent-builder"
+    "https://cloud.google.com/blog/products/ai-machine-learning/new-enhanced-tool-governance-in-vertex-ai-agent-builder",
+    "https://github.blog/security/community-powered-security-with-ai-an-open-source-framework-for-security-research/",
+    "https://github.blog/news-insights/company-news/github-availability-report-december-2025/",
+    "https://techcrunch.com/2026/01/14/bandcamp-takes-a-stand-against-ai-music-banning-it-from-the-platform/",
+    "https://techcrunch.com/2026/01/13/doctors-think-ai-has-a-place-in-healthcare-but-maybe-not-as-a-chatbot/",
+    "https://techcrunch.com/2026/01/12/anthropic-announces-claude-for-healthcare-following-openais-chatgpt-health-reveal/",
+    "https://techcrunch.com/2026/01/12/anthropics-new-cowork-tool-offers-claude-code-without-the-code/",
+    "https://techcrunch.com/2026/01/09/anthropic-adds-allianz-to-growing-list-of-enterprise-wins/",
+    "https://techcrunch.com/2026/01/07/anthropic-reportedly-raising-10b-at-350b-valuation/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.7",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.6",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.5",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.4",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.3"
   ]
 }
