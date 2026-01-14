@@ -55,6 +55,34 @@
       "url": "https://cloud.google.com/blog/products/ai-machine-learning/",
       "categories": ["ai-video", "ai-news"],
       "enabled": true
+    },
+    {
+      "id": "techcrunch-anthropic",
+      "name": "TechCrunch Anthropic",
+      "url": "https://techcrunch.com/tag/anthropic/",
+      "categories": ["ai-news", "claude-code"],
+      "enabled": true
+    },
+    {
+      "id": "venturebeat-ai",
+      "name": "VentureBeat AI",
+      "url": "https://venturebeat.com/ai/",
+      "categories": ["ai-news", "claude-code"],
+      "enabled": true
+    },
+    {
+      "id": "claude-code-github",
+      "name": "Claude Code GitHub Releases",
+      "url": "https://github.com/anthropics/claude-code/releases",
+      "categories": ["claude-code"],
+      "enabled": true
+    },
+    {
+      "id": "claudelog",
+      "name": "ClaudeLog - Claude News",
+      "url": "https://claudelog.com/claude-news/",
+      "categories": ["claude-code"],
+      "enabled": true
     }
   ],
   "categories": {
@@ -81,6 +109,11 @@
     "ai-video": {
       "name": "AI動画・画像生成",
       "description": "動画生成AI、画像生成AI、ビジュアルAIツールの最新情報",
+      "enabled": true
+    },
+    "claude-code": {
+      "name": "Claude Code",
+      "description": "Claude Code関連のニュース、アップデート、開発者向けツール情報",
       "enabled": true
     }
   },
