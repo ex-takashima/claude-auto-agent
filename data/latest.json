@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-15T07:05:00+09:00",
+  "last_updated": "2026-01-16T07:04:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -44,6 +44,11 @@
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.6",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.5",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.4",
-    "https://github.com/anthropics/claude-code/releases/tag/v2.1.3"
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.3",
+    "https://anthropic.com/news/accelerating-scientific-research",
+    "https://anthropic.com/research/economic-index-primitives",
+    "https://anthropic.com/research/anthropic-economic-index-january-2026-report",
+    "https://github.blog/ai-and-ml/github-copilot/building-an-agentic-memory-system-for-github-copilot/",
+    "https://github.blog/engineering/infrastructure/when-protections-outlive-their-purpose-a-lesson-on-managing-defense-systems-at-scale/"
   ]
 }
