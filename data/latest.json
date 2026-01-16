@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-16T07:04:00+09:00",
+  "last_updated": "2026-01-17T07:04:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -49,6 +49,11 @@
     "https://anthropic.com/research/economic-index-primitives",
     "https://anthropic.com/research/anthropic-economic-index-january-2026-report",
     "https://github.blog/ai-and-ml/github-copilot/building-an-agentic-memory-system-for-github-copilot/",
-    "https://github.blog/engineering/infrastructure/when-protections-outlive-their-purpose-a-lesson-on-managing-defense-systems-at-scale/"
+    "https://github.blog/engineering/infrastructure/when-protections-outlive-their-purpose-a-lesson-on-managing-defense-systems-at-scale/",
+    "https://anthropic.com/news/anthropic-appoints-irina-ghose-as-managing-director-of-india",
+    "https://techcrunch.com/video/the-ai-healthcare-gold-rush-is-here/",
+    "https://techcrunch.com/podcast/openai-and-anthropic-are-making-their-play-for-healthcare-and-were-not-surprised/",
+    "https://techcrunch.com/2026/01/15/anthropic-taps-former-microsoft-india-md-to-lead-bengaluru-expansion/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.9"
   ]
 }
