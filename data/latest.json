@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-17T07:04:00+09:00",
+  "last_updated": "2026-01-18T07:04:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -54,6 +54,12 @@
     "https://techcrunch.com/video/the-ai-healthcare-gold-rush-is-here/",
     "https://techcrunch.com/podcast/openai-and-anthropic-are-making-their-play-for-healthcare-and-were-not-surprised/",
     "https://techcrunch.com/2026/01/15/anthropic-taps-former-microsoft-india-md-to-lead-bengaluru-expansion/",
-    "https://github.com/anthropics/claude-code/releases/tag/v2.1.9"
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.9",
+    "https://github.blog/ai-and-ml/github-copilot/building-an-agentic-memory-system-for-github-copilot/",
+    "https://github.blog/security/community-powered-security-with-ai-an-open-source-framework-for-security-research/",
+    "https://techcrunch.com/2026/01/14/bandcamp-takes-a-stand-against-ai-music-banning-it-from-the-platform/",
+    "https://domoai.app/blog/niji-7-guide-animate-ai-anime",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.12",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.11"
   ]
 }
