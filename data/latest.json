@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-20T07:04:00+09:00",
+  "last_updated": "2026-01-21T07:05:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -55,20 +55,15 @@
     "https://techcrunch.com/podcast/openai-and-anthropic-are-making-their-play-for-healthcare-and-were-not-surprised/",
     "https://techcrunch.com/2026/01/15/anthropic-taps-former-microsoft-india-md-to-lead-bengaluru-expansion/",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.9",
-    "https://github.blog/ai-and-ml/github-copilot/building-an-agentic-memory-system-for-github-copilot/",
-    "https://github.blog/security/community-powered-security-with-ai-an-open-source-framework-for-security-research/",
-    "https://techcrunch.com/2026/01/14/bandcamp-takes-a-stand-against-ai-music-banning-it-from-the-platform/",
-    "https://domoai.app/blog/niji-7-guide-animate-ai-anime",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.12",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.11",
-    "https://github.blog/engineering/infrastructure/when-protections-outlive-their-purpose-a-lesson-on-managing-defense-systems-at-scale/",
-    "https://cloud.google.com/blog/products/ai-machine-learning/gemini-3-is-available-for-enterprise",
-    "https://cloud.google.com/blog/products/ai-machine-learning/nano-banana-pro-available-for-enterprise",
-    "https://cloud.google.com/blog/products/ai-machine-learning/what-google-cloud-announced-in-ai-this-month",
-    "https://techcrunch.com/video/the-ai-healthcare-gold-rush-is-here/",
-    "https://techcrunch.com/podcast/openai-and-anthropic-are-making-their-play-for-healthcare-and-were-not-surprised/",
     "https://techcrunch.com/2026/01/18/sequoia-to-invest-in-anthropic-breaking-vc-taboo-on-backing-rivals-ft/",
     "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-ingredients-to-video/",
-    "https://domoai.app/blog/niji-7-guide-animate-ai-anime"
+    "https://domoai.app/blog/niji-7-guide-animate-ai-anime",
+    "https://anthropic.com/news/mariano-florentino-long-term-benefit-trust",
+    "https://anthropic.com/news/anthropic-teach-for-all",
+    "https://github.blog/security/ai-supported-vulnerability-triage-with-the-github-security-lab-taskflow-agent/",
+    "https://github.blog/developer-skills/application-development/context-windows-plan-agent-and-tdd-what-i-learned-building-a-countdown-app-with-github-copilot/",
+    "https://techcrunch.com/2026/01/20/humans-a-human-centric-ai-startup-founded-by-anthropic-xai-google-alums-raised-480m-seed-round/"
   ]
 }
