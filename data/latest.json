@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-22T07:05:00+09:00",
+  "last_updated": "2026-01-23T07:04:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -70,6 +70,12 @@
     "https://techcrunch.com/2026/01/21/anthropic-revises-claudes-constitution-and-hints-at-chatbot-consciousness/",
     "https://techcrunch.com/2026/01/20/anthropics-ceo-stuns-davos-with-nvidia-criticism/",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.15",
-    "https://github.com/anthropics/claude-code/releases/tag/v2.1.14"
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.14",
+    "https://anthropic.com/news/claude-new-constitution",
+    "https://deepmind.google/blog/d4rt-teaching-ai-to-see-the-world-in-four-dimensions/",
+    "https://github.blog/news-insights/company-news/build-an-agent-into-any-app-with-the-github-copilot-sdk/",
+    "https://techcrunch.com/2026/01/22/anthropic-has-to-keep-revising-its-technical-interview-test-so-you-cant-cheat-on-it-with-claude/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.16"
   ]
 }
