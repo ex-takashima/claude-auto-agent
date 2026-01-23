@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-23T07:04:00+09:00",
+  "last_updated": "2026-01-24T07:04:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -76,6 +76,9 @@
     "https://github.blog/news-insights/company-news/build-an-agent-into-any-app-with-the-github-copilot-sdk/",
     "https://techcrunch.com/2026/01/22/anthropic-has-to-keep-revising-its-technical-interview-test-so-you-cant-cheat-on-it-with-claude/",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
-    "https://github.com/anthropics/claude-code/releases/tag/v2.1.16"
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.16",
+    "https://techcrunch.com/2026/01/23/openai-chief-sam-altman-plans-india-visit-as-ai-leaders-converge-in-new-delhi-sources/",
+    "https://domoai.app/blog/niji-7-guide-animate-ai-anime",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.19"
   ]
 }
