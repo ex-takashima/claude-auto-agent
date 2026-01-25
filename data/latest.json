@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-25T07:04:00+09:00",
+  "last_updated": "2026-01-26T07:04:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -89,6 +89,21 @@
     "https://github.blog/ai-and-ml/github-copilot/a-cheat-sheet-to-slash-commands-in-github-copilot-cli/",
     "https://github.blog/security/ai-supported-vulnerability-triage-with-the-github-security-lab-taskflow-agent/",
     "https://github.blog/developer-skills/application-development/context-windows-plan-agent-and-tdd-what-i-learned-building-a-countdown-app-with-github-copilot/",
-    "https://techcrunch.com/2026/01/14/bandcamp-takes-a-stand-against-ai-music-banning-it-from-the-platform/"
+    "https://techcrunch.com/2026/01/14/bandcamp-takes-a-stand-against-ai-music-banning-it-from-the-platform/",
+    "https://deepmind.google/blog/d4rt-teaching-ai-to-see-the-world-in-four-dimensions/",
+    "https://github.blog/news-insights/company-news/build-an-agent-into-any-app-with-the-github-copilot-sdk/",
+    "https://github.blog/ai-and-ml/github-copilot/a-cheat-sheet-to-slash-commands-in-github-copilot-cli/",
+    "https://github.blog/security/ai-supported-vulnerability-triage-with-the-github-security-lab-taskflow-agent/",
+    "https://github.blog/developer-skills/application-development/context-windows-plan-agent-and-tdd-what-i-learned-building-a-countdown-app-with-github-copilot/",
+    "https://github.blog/ai-and-ml/github-copilot/building-an-agentic-memory-system-for-github-copilot/",
+    "https://domoai.app/blog/niji-7-guide-animate-ai-anime",
+    "https://techcrunch.com/2026/01/24/tech-ceos-boast-and-bicker-about-ai-at-davos/",
+    "https://techcrunch.com/2026/01/22/anthropic-has-to-keep-revising-its-technical-interview-test-so-you-cant-cheat-on-it-with-claude/",
+    "https://techcrunch.com/2026/01/21/anthropic-revises-claudes-constitution-and-hints-at-chatbot-consciousness/",
+    "https://techcrunch.com/2026/01/20/anthropics-ceo-stuns-davos-with-nvidia-criticism/",
+    "https://techcrunch.com/2026/01/20/humans-a-human-centric-ai-startup-founded-by-anthropic-xai-google-alums-raised-480m-seed-round/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.19",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.16"
   ]
 }
