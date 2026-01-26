@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-26T07:04:00+09:00",
+  "last_updated": "2026-01-27T07:05:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/compliance-framework-SB53",
     "https://anthropic.com/news/genesis-mission-partnership",
@@ -104,6 +104,7 @@
     "https://techcrunch.com/2026/01/20/humans-a-human-centric-ai-startup-founded-by-anthropic-xai-google-alums-raised-480m-seed-round/",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.19",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
-    "https://github.com/anthropics/claude-code/releases/tag/v2.1.16"
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.16",
+    "https://github.blog/ai-and-ml/github-copilot/power-agentic-workflows-in-your-terminal-with-github-copilot-cli/"
   ]
 }
