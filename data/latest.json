@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-29T07:07:00+09:00",
+  "last_updated": "2026-01-30T07:06:00+09:00",
   "notified_urls": [
     "https://anthropic.com/news/servicenow-anthropic-claude",
     "https://github.blog/engineering/from-pixels-to-characters-the-engineering-behind-github-copilot-clis-animated-ascii-banner/",
@@ -133,6 +133,12 @@
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.19",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.16",
-    "https://github.blog/ai-and-ml/github-copilot/power-agentic-workflows-in-your-terminal-with-github-copilot-cli/"
+    "https://github.blog/ai-and-ml/github-copilot/power-agentic-workflows-in-your-terminal-with-github-copilot-cli/",
+    "https://anthropic.com/news/servicenow-anthropic-claude",
+    "https://techcrunch.com/2026/01/29/music-publishers-sue-anthropic-for-3b-over-flagrant-piracy-of-20000-works/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.25",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.23",
+    "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie",
+    "https://domoai.app/blog/pixverse-r1-real-time-world-model"
   ]
 }
