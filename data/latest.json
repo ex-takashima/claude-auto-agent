@@ -1,6 +1,11 @@
 {
-  "last_updated": "2026-01-30T07:06:00+09:00",
+  "last_updated": "2026-01-31T07:05:00+09:00",
   "notified_urls": [
+    "https://www.anthropic.com/mars",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.27",
+    "https://techcrunch.com/2026/01/30/anthropic-brings-agentic-plugins-to-cowork/",
+    "https://github.blog/developer-skills/programming-languages-and-frameworks/7-learnings-from-anders-hejlsberg-the-architect-behind-c-and-typescript/",
+    "https://github.blog/news-insights/policy-news-and-insights/help-shape-the-future-of-open-source-in-europe/",
     "https://anthropic.com/news/servicenow-anthropic-claude",
     "https://github.blog/engineering/from-pixels-to-characters-the-engineering-behind-github-copilot-clis-animated-ascii-banner/",
     "https://github.blog/news-insights/policy-news-and-insights/year-recap-and-future-goals-for-the-github-innovation-graph/",
