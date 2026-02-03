@@ -1,6 +1,13 @@
 {
-  "last_updated": "2026-02-02T07:05:00+09:00",
+  "last_updated": "2026-02-04T07:09:00+09:00",
   "notified_urls": [
+    "https://anthropic.com/news/apple-xcode-claude-agent-sdk",
+    "https://anthropic.com/news/anthropic-partners-with-allen-institute-and-howard-hughes-medical-institute",
+    "https://github.blog/news-insights/octoverse/what-the-fastest-growing-tools-reveal-about-how-software-is-being-built/",
+    "https://github.blog/ai-and-ml/github-copilot/how-to-maximize-github-copilots-agentic-capabilities/",
+    "https://techcrunch.com/2026/02/02/what-snowflakes-deal-with-openai-tells-us-about-the-enterprise-ai-race/",
+    "https://techcrunch.com/2026/01/29/amazon-is-reportedly-in-talks-to-invest-50-billion-in-openai/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.30",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.29",
     "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie",
     "https://www.anthropic.com/mars",
