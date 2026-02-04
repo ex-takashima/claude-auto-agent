@@ -1,6 +1,9 @@
 {
-  "last_updated": "2026-02-04T07:09:00+09:00",
+  "last_updated": "2026-02-05T07:06:00+09:00",
   "notified_urls": [
+    "https://anthropic.com/news/claude-is-a-space-to-think",
+    "https://github.blog/news-insights/company-news/pick-your-agent-use-claude-and-codex-on-agent-hq/",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.31",
     "https://anthropic.com/news/apple-xcode-claude-agent-sdk",
     "https://anthropic.com/news/anthropic-partners-with-allen-institute-and-howard-hughes-medical-institute",
     "https://github.blog/news-insights/octoverse/what-the-fastest-growing-tools-reveal-about-how-software-is-being-built/",
