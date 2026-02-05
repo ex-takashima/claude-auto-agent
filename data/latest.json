@@ -1,6 +1,12 @@
 {
-  "last_updated": "2026-02-05T07:06:00+09:00",
+  "last_updated": "2026-02-06T07:07:00+09:00",
   "notified_urls": [
+    "https://anthropic.com/news/claude-opus-4-6",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.32",
+    "https://github.blog/ai-and-ml/generative-ai/continuous-ai-in-practice-what-developers-can-automate-today-with-agentic-ci/",
+    "https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/",
+    "https://techcrunch.com/2026/02/05/openai-launches-new-agentic-coding-model-only-minutes-after-anthropic-drops-its-own/",
+    "https://techcrunch.com/2026/02/04/sam-altman-got-exceptionally-testy-over-claude-super-bowl-ads/",
     "https://anthropic.com/news/claude-is-a-space-to-think",
     "https://github.blog/news-insights/company-news/pick-your-agent-use-claude-and-codex-on-agent-hq/",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.31",
