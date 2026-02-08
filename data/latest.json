@@ -1,6 +1,12 @@
 {
-  "last_updated": "2026-02-08T07:05:00+09:00",
+  "last_updated": "2026-02-09T07:06:00+09:00",
   "notified_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.37",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.36",
+    "https://github.blog/changelog/2026-02-04-claude-and-codex-are-now-available-in-public-preview-on-github/",
+    "https://suno.com/blog/studio1_2",
+    "https://techcrunch.com/2026/01/29/deezer-makes-it-easier-for-rival-platforms-to-take-a-stance-against-ai-generated-music/",
+    "https://domoai.app/blog/best-ai-video-generators",
     "https://anthropic.com/news/claude-opus-4-6",
     "https://github.blog/ai-and-ml/generative-ai/continuous-ai-in-practice-what-developers-can-automate-today-with-agentic-ci/",
     "https://techcrunch.com/2026/02/06/it-just-got-easier-for-claude-to-check-in-on-your-wordpress-site/",
